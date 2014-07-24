@@ -103,23 +103,26 @@ Here is an abbreviated list of commonly used parameters.
 * Decoder class for Kafka Messages to Avro Records
     * `camus.message.decoder.class=`
 * If whitelist has values, only whitelisted topic are pulled.  Nothing on the blacklist is pulled
- * kafka.blacklist.topics=
- * kafka.whitelist.topics=
+    * `kafka.blacklist.topics=`
+    * `kafka.whitelist.topics=`
  
 ### Extra configuration
 
-* Sub directory, recommended to use with etl.output.date.format (default: hourly)
- * etl.destination.path.topic.sub.dir=
 * Partitioner class used to create destination paths (default: com.linkedin.camus.etl.kafka.coders.DefaultPartitioner)
-* If whe want to specify a custom data path use com.linkedin.camus.etl.kafka.coders.CustomOutputPathPartitioner with etl.output.date.format property
- * etl.partitioner.class=
-* Format date to build destination path (default: YYYY/MM/dd/HH)
- * etl.output.date.format=
+    * `etl.partitioner.class=`
+* Date format to build destination path (default: YYYY/MM/dd/HH)
+    * `etl.output.date.format=`
+* Sub directory, recommended to use with etl.output.date.format (default: hourly)
+    * `etl.destination.path.topic.sub.dir=`
 
-Output path example for monthly partition:  
- * etl.destination.path.topic.sub.dir=monthly
- * etl.partitioner.class=com.linkedin.camus.etl.kafka.coders.CustomOutputPathPartitioner
- * etl.output.date.format=YYYY/MM
+* Output path default structure is:
+    * `etl.destination.path/topicName/hourly/YYY/MM/dd/HH`
+
+* Custom output path example for monthly partition:  
+ * `etl.partitioner.class=com.linkedin.camus.etl.kafka.coders.CustomOutputPathPartitioner`
+ * `etl.destination.path.topic.sub.dir=monthly`
+ * `etl.output.date.format=YYYY/MM`
+ * This options gets the output path: `etl.destination.path/topicName/monthly/YYYY/MM`
 
 * Using avro schema repository server
  * Schema registry class to use
