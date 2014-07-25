@@ -6,13 +6,16 @@ import com.linkedin.camus.coders.CamusWrapper;
 import com.linkedin.camus.coders.MessageDecoder;
 
 /**
- * MessageDecoder class that will convert the payload into a JSON object,
+ * MessageDecoder class that will convert the payload into a String object,
  * look for a field named 'timestamp', and then set the CamusWrapper's
- * timestamp property to the record's timestamp.  If the JSON does not have
- * a timestamp, then System.currentTimeMillis() will be used.
- * This MessageDecoder returns a CamusWrapper that works with Strings payloads,
- * since JSON data is always a String.
+ * timestamp property to the record's timestamp. System.currentTimeMillis() is used.
+ * This MessageDecoder returns a CamusWrapper that works with Strings payloads.
+ * 
+ * @author Marcelo Valle (mvalleavila@gmail.com https://github.com/mvalleavila)
+ * 
  */
+
+
 public class PlainStringMessageDecoder extends MessageDecoder<byte[], String> {
 
 	@Override

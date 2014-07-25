@@ -11,6 +11,13 @@ import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 
+/**
+* Partitioner class will prepare destination path topic subdirectory,
+* in function of configurable value "etl.output.date.format" in camus property files  
+* 
+* @author Marcelo Valle (mvalleavila@gmail.com https://github.com/mvalleavila)
+* 
+*/
 public class CustomOutputPathPartitioner extends Partitioner {
 
     //protected DateTimeZone outputDateTimeZone = null;
