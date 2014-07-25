@@ -6,10 +6,8 @@ import com.linkedin.camus.coders.CamusWrapper;
 import com.linkedin.camus.coders.MessageDecoder;
 
 /**
- * MessageDecoder class that will convert the payload into a String object,
- * look for a field named 'timestamp', and then set the CamusWrapper's
- * timestamp property to the record's timestamp. System.currentTimeMillis() is used.
- * This MessageDecoder returns a CamusWrapper that works with Strings payloads.
+ * MessageDecoder class that don't do any conversion,
+ * This MessageDecoder returns a CamusWrapper that works with bytes[] payloads.
  * 
  * @author Marcelo Valle (mvalleavila@gmail.com https://github.com/mvalleavila)
  * 
