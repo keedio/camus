@@ -20,10 +20,10 @@
 			<groupId>com.linkedin.camus</groupId>
 			<artifactId>camus-schema-registry</artifactId>
 		</dependency>
-        <dependency>
-            <groupId>com.linkedin.camus</groupId>
-            <artifactId>camus-schema-registry-avro</artifactId>
-        </dependency>
+	        <dependency>
+        	    <groupId>com.linkedin.camus</groupId>
+            		<artifactId>camus-schema-registry-avro</artifactId>
+        	</dependency>
 		<dependency>
 			<groupId>com.linkedin.camus</groupId>
 			<artifactId>camus-kafka-coders</artifactId>
@@ -35,10 +35,6 @@
 		<dependency>
 			<groupId>org.apache.avro</groupId>
 			<artifactId>avro-mapred</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.hadoop</groupId>
-			<artifactId>hadoop-client</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.kafka</groupId>
@@ -77,10 +73,32 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>3.3</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>commons-httpclient</groupId>
 			<artifactId>commons-httpclient</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.indeed</groupId>
+			<artifactId>java-dogstatsd-client</artifactId>
+			<version>2.0.8</version>
+		</dependency>
+    <dependency>
+      <groupId>javax.mail</groupId>
+      <artifactId>mail</artifactId>
+      <version>1.4.3</version>
+    </dependency>
+    <dependency>
+      <groupId>dumbster</groupId>
+      <artifactId>dumbster</artifactId>
+      <version>1.6</version>
+      <scope>test</scope>
+    </dependency>
 	</dependencies>
 
 	<build>
