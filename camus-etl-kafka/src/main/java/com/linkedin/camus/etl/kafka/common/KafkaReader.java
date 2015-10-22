@@ -181,22 +181,41 @@ public class KafkaReader {
     }
   }
 
-  private boolean refreshTopicMetadataAndRetryFetch(FetchRequest fetchRequest, long tempTime) {
-    try {
-      refreshTopicMetadata();
-      FetchResponse fetchResponse = simpleConsumer.fetch(fetchRequest);
-      if (fetchResponse.hasError()) {
-        log.warn("Error encountered during fetch request retry from Kafka");
-        log.warn("Error Code generated : "
-            + fetchResponse.errorCode(kafkaRequest.getTopic(), kafkaRequest.getPartition()));
-        return false;
-      }
-      return processFetchResponse(fetchResponse, tempTime);
-    } catch (Exception e) {
-      log.info("Exception generated during fetch for topic " + kafkaRequest.getTopic()
-          + ". This topic will be skipped.");
-      return false;
+  private boolean refreshTopicMetadataAndRetryFetch(FetchRequest fetchRequest, long tempTime){
+
+    int maxRetries = 3;
+    int retries=0;
+    	
+    while (retries < maxRetries){
+    	try {
+	
+	      refreshTopicMetadata();
+	      FetchResponse fetchResponse = simpleConsumer.fetch(fetchRequest);
+	      if (fetchResponse.hasError()) {
+	        log.warn("Error encountered during fetch request retry from Kafka");
+	        log.warn("Error Code generated : "
+	            + fetchResponse.errorCode(kafkaRequest.getTopic(), kafkaRequest.getPartition()));
+	        Thread.sleep(1000);
+	        log.info("Retriying");
+	        retries++;
+	        continue;
+	      }
+	      return processFetchResponse(fetchResponse, tempTime);
+	    } catch (Exception e) {
+	    	
+	      log.info("Exception generated during fetch for topic " + kafkaRequest.getTopic()
+	          + ". This topic will be skipped.");
+	      try {
+			Thread.sleep(1000);
+	      } catch (InterruptedException e1) {
+	    	log.info("Retriying");
+	    	retries++;
+	      }
+	      log.info("Retriying");
+	      retries++;
+	    }
     }
+    return false;
   }
 
   private void refreshTopicMetadata() {
